@@ -1,0 +1,379 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #070706;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #070706;
+  color: #f5efe2;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Rajdhani', 'Space Grotesk', system-ui, sans-serif;
+  text-rendering: geometricPrecision;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bg-paper-noise {
+  background:
+    linear-gradient(135deg, rgba(245, 239, 226, 0.055), transparent 34%),
+    linear-gradient(180deg, rgba(255, 70, 85, 0.065), transparent 32%),
+    repeating-radial-gradient(circle at 18% 24%, rgba(245, 239, 226, 0.035) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(92deg, rgba(245, 239, 226, 0.018) 0 1px, transparent 1px 12px);
+}
+
+.font-valorant {
+  letter-spacing: 0.06em;
+}
+
+.custom-cursor-ring,
+.custom-cursor-dot,
+.custom-cursor-click {
+  display: none;
+}
+
+.hero-halo {
+  position: absolute;
+  width: 100vw;
+  height: 100vw;
+  left: 25%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 70, 85, 0.05) 0%, transparent 50%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(245, 239, 226, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 239, 226, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at 25% 50%, black 10%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at 25% 50%, black 10%, transparent 65%);
+  opacity: 0.38;
+  transform: perspective(720px) rotateX(64deg) translateY(12%);
+  transform-origin: center;
+  animation: grid-drift 13s linear infinite;
+}
+
+.hero-scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(255, 70, 85, 0.12), transparent);
+  height: 32%;
+  opacity: 0.55;
+  animation: scan-pass 6s ease-in-out infinite;
+  mask-image: linear-gradient(to right, black 40%, transparent 65%);
+  -webkit-mask-image: linear-gradient(to right, black 40%, transparent 65%);
+}
+
+.hero-diagram {
+  position: absolute;
+  width: min(46vw, 34rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(245, 239, 226, 0.14);
+  background:
+    linear-gradient(45deg, transparent 48%, rgba(255, 70, 85, 0.35) 49%, rgba(255, 70, 85, 0.35) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(245, 239, 226, 0.12) 49%, rgba(245, 239, 226, 0.12) 51%, transparent 52%);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  opacity: 0.4;
+}
+
+.hero-diagram-one {
+  right: 9%;
+  top: 17%;
+  animation: diagram-drift 10s ease-in-out infinite;
+}
+
+.hero-diagram-two {
+  right: 23%;
+  bottom: 8%;
+  width: min(32vw, 23rem);
+  opacity: 0.24;
+  animation: diagram-drift 12s ease-in-out infinite reverse;
+}
+
+.marquee-row {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  padding: 0 0.625rem;
+  animation: marquee-left 42s linear infinite;
+}
+
+.marquee-reverse {
+  animation-name: marquee-right;
+  animation-duration: 48s;
+}
+
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-33.333%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 96px 96px, 96px 96px;
+  }
+}
+
+@keyframes scan-pass {
+  0%,
+  100% {
+    transform: translateY(-120%);
+  }
+
+  50% {
+    transform: translateY(340%);
+  }
+}
+
+@keyframes diagram-drift {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(7deg) translateY(18px);
+  }
+}
+
+/* Dynamic Particles */
+.dynamic-particle-layer {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(245, 239, 226, 0.2) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black, transparent 90%);
+  opacity: 0.35;
+  animation: dynamic-particle-drift 40s linear infinite;
+  z-index: 2;
+}
+
+@keyframes dynamic-particle-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 120px 180px;
+  }
+}
+
+/* Floating elements removed */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070706;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4655;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .marquee-track {
+    transform: none !important;
+  }
+}
+
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role='button'],
+  input,
+  textarea,
+  select {
+    cursor: none;
+  }
+
+  .custom-cursor-ring,
+  .custom-cursor-dot,
+  .custom-cursor-click {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .custom-cursor-ring {
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    margin-top: -22px;
+    border: 1px solid rgba(245, 239, 226, 0.55);
+    background: rgba(245, 239, 226, 0.035);
+    box-shadow:
+      0 0 28px rgba(255, 70, 85, 0.18),
+      inset 0 0 18px rgba(255, 70, 85, 0.1);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    transition:
+      opacity 160ms ease,
+      width 180ms ease,
+      height 180ms ease,
+      margin 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease;
+  }
+
+  .scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 70, 85, 0.06) 50%,
+      transparent 100%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.35;
+  }
+
+  .custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    background: #ff4655;
+    box-shadow: 0 0 18px rgba(255, 70, 85, 0.9);
+    transform-origin: center;
+    transition:
+      opacity 120ms ease,
+      width 180ms ease,
+      height 180ms ease,
+      margin 180ms ease,
+      background 180ms ease;
+  }
+
+  .custom-cursor-ring.cursor-visible,
+  .custom-cursor-dot.cursor-visible {
+    opacity: 1;
+  }
+
+  .custom-cursor-click {
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 1px solid rgba(255, 70, 85, 0.95);
+    background: rgba(255, 70, 85, 0.1);
+    box-shadow:
+      0 0 22px rgba(255, 70, 85, 0.65),
+      inset 0 0 16px rgba(245, 239, 226, 0.18);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    animation: cursor-click-pulse 620ms ease-out forwards;
+  }
+
+  .custom-cursor-click.project-click {
+    width: 22px;
+    height: 22px;
+    margin-left: -11px;
+    margin-top: -11px;
+    border-color: rgba(245, 239, 226, 0.95);
+    background:
+      linear-gradient(45deg, transparent 47%, rgba(255, 70, 85, 0.95) 48%, rgba(255, 70, 85, 0.95) 52%, transparent 53%),
+      rgba(108, 229, 223, 0.1);
+    box-shadow:
+      0 0 32px rgba(255, 70, 85, 0.78),
+      0 0 46px rgba(108, 229, 223, 0.26),
+      inset 0 0 18px rgba(245, 239, 226, 0.2);
+    clip-path: polygon(15% 0, 85% 0, 100% 50%, 85% 100%, 15% 100%, 0 50%);
+    animation: project-click-pulse 720ms ease-out forwards;
+  }
+}
+
+@keyframes cursor-click-pulse {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.4) rotate(0deg);
+  }
+
+  60% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(4.2) rotate(90deg);
+  }
+}
+
+@keyframes project-click-pulse {
+  0% {
+    opacity: 1;
+    transform: scale(0.45) rotate(0deg);
+  }
+
+  45% {
+    opacity: 0.9;
+    transform: scale(2.2) rotate(45deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(5) rotate(135deg);
+  }
+}
