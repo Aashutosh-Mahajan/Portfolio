@@ -25,7 +25,7 @@ function useTheme() {
     } catch {
       /* storage unavailable */
     }
-    return 'light'
+    return 'dark'
   })
   useEffect(() => {
     document.documentElement.dataset.theme = theme
